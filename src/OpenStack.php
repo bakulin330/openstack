@@ -163,7 +163,10 @@ class OpenStack
      */
     public function blockStorageV2(array $options = []): BlockStorage\v2\Service
     {
-        $defaults = ['catalogName' => 'cinderv2', 'catalogType' => 'volumev2'];
+        $defaults = [
+            'catalogName' => isset($options['catalogName']) ? $options['catalogName'] : 'cinderv2', 
+            'catalogType' => isset($options['catalogType']) ? $options['catalogType'] : 'volumev2',
+        ];
 
         return $this->builder->createService('BlockStorage\\v2', array_merge($defaults, $options));
     }
